@@ -13,7 +13,13 @@
 
 ```bash
 composer require laravel/ui
+```
+```bash
 php artisan ui bootstrap --auth
+```
+```bash
 npm install
+```
+```bash
 npm run dev
 ```
