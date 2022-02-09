@@ -21,6 +21,7 @@
     </div>
     <style>
         .dark-mode{
+            /* #2A2F45 - 212529*/
             background-color: #212529;
             color: #fff;
             transition: .5s;
