@@ -9,7 +9,7 @@
 </a>
 </p>
 
-## Package Used
+## Package used
 
 ```bash
 composer require laravel/ui
