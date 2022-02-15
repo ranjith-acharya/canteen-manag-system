@@ -23,3 +23,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('profile', ProfileController::class);
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::prefix('admin')->group(function () {
+        Route::name('admin.')->group(function () {
+            Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+            Route::resource('profile', ProfileController::class);
+        });
+    });
+});
