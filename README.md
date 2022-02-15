@@ -11,6 +11,7 @@
 
 ## Package used
 
+<strong>Installing Laravel/UI</strong><br>
 ```bash
 composer require laravel/ui
 ```
@@ -22,4 +23,22 @@ npm install
 ```
 ```bash
 npm run dev
+```
+
+<strong>Installing Spatie Laravel Permissions for Role</strong><br>
+```bash
+composer require spatie/laravel-permission
+```
+In Config/app.php
+```php
+'providers' => [
+	....
+	Spatie\Permission\PermissionServiceProvider::class,
+],
+```
+```bash
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+```bash
+php artisan migrate
 ```
