@@ -1,5 +1,9 @@
 @extends('layouts.customApp')
 
+@section('custom-title')
+Recover your Password!
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-6 d-none d-md-block d-lg-block d-xl-block d-xxl-block">
