@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">
+                <a class="navbar-brand" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -51,11 +51,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="../img/user/{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="32px" height="32px">&emsp;{{ Auth::user()->name }}
+                                    <img src="../../img/user/{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="32px" height="32px">&emsp;{{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}">Profile<i class="bi bi-person-bounding-box float-end"></i></a>
+                                    <a class="dropdown-item" href="@if(Auth::user()->role === 'admin') {{ route('admin.profile.show', Auth::user()->id) }} @else {{ route('profile.show', Auth::user()->id) }} @endif">Profile<i class="bi bi-person-bounding-box float-end"></i></a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

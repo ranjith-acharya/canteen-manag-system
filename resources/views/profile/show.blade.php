@@ -25,7 +25,7 @@
     <div class="card card-body mt-4">
         <div class="row">
             <div class="col-md-3 text-center">
-                <img src="../img/user/{{ Auth::user()->avatar }}" class="img-fluid" height="128px" width="128px">
+                <img src="../../img/user/{{ Auth::user()->avatar }}" class="img-fluid" height="128px" width="128px">
             </div>
             <div class="col-md-9">
                 <div class="row g-2 mb-2">
