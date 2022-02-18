@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('custom-title')
+Home
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +17,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }}
                 </div>
             </div>
