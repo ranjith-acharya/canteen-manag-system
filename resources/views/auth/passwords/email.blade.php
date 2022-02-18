@@ -12,7 +12,8 @@ Recover your Password!
     <div class="col-md-6">
         <form method="POST" action="{{ route('password.email') }}">
             <div class="text-center"><img class="mb-4 img-responsive img-fluid" src="{{ asset('img/logo.png') }}" alt="" width="100" height="100"></div>
-            <h1 class="h3 mb-3 fw-normal text-center">Reset your Password!</h1>
+            <h1 class="h2 mb-3 fw-normal text-center">Reset your Password!</h1>
+            <h3 class="h6 mb-3 fw-normal text-center">Enter your email and we will send you a reset link</h3>
             @if(session('status'))
                 <div class="alert alert-success d-flex alig-items-center alert-dismissible fade show" role="alert">
                     <i class="bi bi-exclamation-octagon-fill text-danger"></i>&nbsp;
@@ -31,7 +32,7 @@ Recover your Password!
             @enderror
         </div><br>
         <div class="text-center mb-3">
-            <button class="w-50 btn btn-lg btn-success rounded-pill text-white" type="submit">Send Reset link</button>
+            <button class="w-50 btn btn-success rounded-pill text-white" type="submit">Send me the link</button>
         </div>
         </form>
     </div>
