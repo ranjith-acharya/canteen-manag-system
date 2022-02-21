@@ -108,6 +108,8 @@ class ProfileController extends Controller
     {
         // return $request;
         // return $id;
+        // $customer = Profile::findOrFail($id)->customer_id;
+        // return User::findOrFail($customer);
         $this->validate($request, [
             'branch' => 'required',
             'department' => 'required',
@@ -122,7 +124,13 @@ class ProfileController extends Controller
         $fields = $request->all();
         $fields['customer_id'] = Auth::id();
         $profile = Profile::find($id);
+        $customerID = Profile::findOrFail($id)->customer_id;
+        $customer = User::findOrFail($customerID);
+        $customer['card'] = $request->card;
+        $customer['cardcvv'] = $request->cardcvv;
         // return $profile;
+        
+        $customer->save();
         $profile->update($fields);
         return redirect()->route('profile.show', Auth::id())->with('status', 'Profile Updated!');
     }

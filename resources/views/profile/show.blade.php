@@ -52,7 +52,9 @@
                         </div>
                     </div>
                 </div>
-                <hr>
+                @if(Auth::user()->role === 'customer')
+                    <hr>
+                @endif
                 @if(count($profiles) > 0)
                     <div class="row g-2 mb-2">
                         <div class="form-group col-md-4">
@@ -170,12 +172,38 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row g-2 mb-2">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input id="card" type="text" class="form-control @error('card') is-invalid @enderror" name="card" placeholder="Card Number" value="{{ Auth::user()->card }}" maxlength="16">
+                                            <label for="card" class="text-dark">Card Number</label>
+                                            @error('card')
+                                                <div class="invalid-feedback mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input id="cardcvv" type="text" class="form-control @error('cardcvv') is-invalid @enderror" name="cardcvv" placeholder="Card CVV" value="{{ Auth::user()->cardcvv }}" maxlength="4">
+                                            <label for="cardcvv" class="text-dark">Card CVV</label>
+                                            @error('cardcvv')
+                                            <div class="invalid-feedback mt-2">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 <input type="submit" class="btn btn-success" value="Update">
                                 </form>
                             </div>    
                         </div>
                 @else
-                    <h4 class="lead">Add Information Click <a type="button" class="link" data-bs-toggle="modal" data-bs-target="#createProfile">here</a></h4>
+                    @if(Auth::user()->role === 'customer')
+                        <h4 class="lead">Add Information Click <a type="button" class="link" data-bs-toggle="modal" data-bs-target="#createProfile">here</a></h4>
+                    @endif
                     <div class="modal fade" id="createProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
