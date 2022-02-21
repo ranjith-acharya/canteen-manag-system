@@ -21,7 +21,7 @@ class CustomerController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
             'card' => ['required', 'string', 'max:16', 'min:16', 'unique:users'],
             'cardcvv' => ['required', 'string', 'max:4', 'min:3'],
         ], [

@@ -118,10 +118,10 @@ Admin Home
                                 </div>
                                 @enderror
                             </div><br>
-                            <div class="form-floating">
+                            {{-- <div class="form-floating">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="new-password">
                                 <label for="password-confirm" class="text-dark">Confirm Password</label>
-                            </div><br>
+                            </div><br> --}}
                             <div class="row g-3 mb-3">
                                 <div class="col-md-8">
                                     <div class="form-floating">
