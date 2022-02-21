@@ -27,9 +27,9 @@ class AdminUser extends Seeder
             'cardcvv' => Str::random('4'),
         ]);
 
-        $role = Role::create(['name' => 'admin']);
+        Role::create(['name' => 'admin']);
         $user->assignRole('admin');
-        $role = Role::create(['name' => 'customer']);
+        Role::create(['name' => 'customer']);
 
     }
 }
