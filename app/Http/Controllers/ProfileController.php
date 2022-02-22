@@ -115,11 +115,20 @@ class ProfileController extends Controller
             'department' => 'required',
             'year' => 'required',
             'contact' => 'required|max:10',
+            'card' => ['required', 'string', 'max:16', 'min:16', 'unique:users'],
+            'cardcvv' => ['required', 'string', 'max:4', 'min:3'],
         ], [
             'branch.required' => 'Do select branch!',
             'department.required' => 'Do select department',
             'year.required' => 'Select your current year',
             'contact.required' => 'Do provide contact number',
+            'card.required' => 'Provide your Card number',
+            'card.unique' => 'Card exists in our System',
+            'card.min' => 'Card number must be atleast 16 characters',
+            'card.max' => 'Card number must be atleast 16 characters',
+            'cardcvv.min' => 'Card CVV must be atleast 3 to 4 characters',
+            'cardcvv.max' => 'Card CVV must be atleast 3 to 4 characters',
+            'cardcvv.required' => 'Provide your Card CVV mentioned at back of your card',
         ]);
         $fields = $request->all();
         $fields['customer_id'] = Auth::id();
