@@ -154,7 +154,7 @@ Admin Home
         </div>
             
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-            <div class="card card-body shadow-sm">
+            <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Customers</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
@@ -167,7 +167,7 @@ Admin Home
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-            <div class="card card-body shadow-sm">
+            <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Canteen</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
@@ -180,7 +180,7 @@ Admin Home
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-            <div class="card card-body shadow-sm">
+            <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Orders</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
@@ -196,7 +196,7 @@ Admin Home
     <div class="row">
         <div class="col-md-6">
             <h3 class="fs-4 mb-3 fw-bold">Customer Details</h3>
-            <div class="card card-body table-responsive">
+            <div class="card card-body table-responsive border-primary">
                 <table id="customerDetails" class="table table-sm table-striped" style="width:100%;">
                 <thead>
                     <tr>
@@ -219,7 +219,7 @@ Admin Home
         </div>
         <div class="col-md-6">
             <h3 class="fs-4 mb-3 fw-bold">Canteen Details</h3>
-            <div class="card card-body table-responsive">
+            <div class="card card-body table-responsive border-primary">
                 <table id="canteenDetails" class="table table-sm table-striped" style="width:100%;">
                 <thead>
                     <tr>
@@ -231,7 +231,7 @@ Admin Home
                 <tbody>
                     @foreach ($canteens as $canteen)
                     <tr>
-                        <td><a class="link" href="">{{ $canteen->name }}</a></td>
+                        <td><a class="link" href="{{ route('admin.canteen.show', $canteen->id) }}">{{ $canteen->name }}</a></td>
                         <td>{{ Carbon\Carbon::parse($canteen->created_at)->diffForHumans() }}</td>
                         <td>{{ $canteen->id }}</td>
                     </tr>
