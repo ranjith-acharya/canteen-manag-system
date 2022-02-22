@@ -14,4 +14,8 @@ class Canteen extends Model
         'name',
         'status',
     ];
+
+    public function food(){
+        return $this->hasMany('\App\Models\FoodItem', 'canteen_id');
+    }
 }
