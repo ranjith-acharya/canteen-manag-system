@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Canteen;
+use App\Models\FoodItem;
 
 class CanteenController extends Controller
 {
@@ -55,7 +56,10 @@ class CanteenController extends Controller
      */
     public function show($id)
     {
-        //
+        $canteen = Canteen::findOrFail($id);
+        $foodItems = FoodItem::where('canteen_id', $id)->get();
+        // return $foodItems;
+        return view('admin.canteen', compact('canteen', 'foodItems'));
     }
 
     /**
@@ -90,5 +94,19 @@ class CanteenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function setStatus(Request $request){
+        // return "hello";
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+        // return $request;
+        $fields = $request->all();
+        // return $fields;
+        $canteen = Canteen::findOrFail($request->canteen_id)->first();
+        // return $canteen;
+        $canteen->update($fields);
+        return redirect()->route('admin.canteen.show', $request->canteen_id)->with('status', 'Status Changed!');
     }
 }
