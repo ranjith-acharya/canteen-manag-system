@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CanteenController;
+use App\Http\Controllers\Admin\FoodItemController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('profile', ProfileController::class);
+Route::resource('/canteen', App\Http\Controllers\CanteenController::class);
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::prefix('admin')->group(function () {
@@ -32,6 +34,8 @@ Route::group(['middleware' => ['role:admin']], function () {
             Route::resource('profile', ProfileController::class);
 
             Route::resource('canteen', CanteenController::class);
+            Route::post('canteen/status', [App\Http\Controllers\Admin\CanteenController::class, 'setStatus'])->name('set.status');
+            Route::resource('food', FoodItemController::class);
             Route::get('/customer/{customer}', [App\Http\Controllers\Admin\CustomerController::class, 'show'])->name('customer.show');
             Route::post('/customer/store', [\App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer.store');
         });
