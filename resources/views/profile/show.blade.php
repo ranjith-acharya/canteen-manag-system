@@ -47,8 +47,8 @@
                         <label for="card" class="fw-bold">Card :</label>
                         <button type="button" id="revealCardBtn" class="btn btn-sm text-dark border-0 badge rounded-pill"><i id="eye" class="bi bi-eye-slash lead"></i></button>
                         <div class="">
-                            <p id="cardInfo">{{ Str::mask(Auth::user()->card, 'X', -16, 10) }}</p>
-                            <p id="revealCard" style="display:none;">{{ Auth::user()->card }}</p> 
+                            <p id="cardInfo"><i class="bi bi-credit-card-2-front lead"></i>&nbsp;{{ Str::mask(Auth::user()->card, 'X', -16, 10) }}</p>
+                            <p id="revealCard" style="display:none;"><i class="bi bi-credit-card-2-front-fill lead"></i>&nbsp;{{ Auth::user()->card }}</p> 
                         </div>
                     </div>
                 </div>
