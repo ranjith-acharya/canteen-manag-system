@@ -104,7 +104,7 @@ class CanteenController extends Controller
         // return $request;
         $fields = $request->all();
         // return $fields;
-        $canteen = Canteen::findOrFail($request->canteen_id)->first();
+        $canteen = Canteen::findOrFail($request->canteen_id);
         // return $canteen;
         $canteen->update($fields);
         return redirect()->route('admin.canteen.show', $request->canteen_id)->with('status', 'Status Changed!');
