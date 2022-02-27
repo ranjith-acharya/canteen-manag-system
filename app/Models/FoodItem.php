@@ -14,12 +14,15 @@ class FoodItem extends Model
         'name',
         'type',
         'image',
-        'half_price',
-        'full_price',
+        'price',
         'canteen_id',
     ];
 
     public function canteen(){
         return $this->belongsToMany('App\Models\Canteen');
+    }
+
+    public function order(){
+        return $this->hasOne('App\Models\Order');
     }
 }

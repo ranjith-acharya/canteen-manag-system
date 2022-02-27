@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function profile(){
         return $this->hasOne('App\Models\Profile', 'customer_id');
     }
+
+    public function order(){
+        return $this->hasMany('App\Models\Order', 'customer_id');
+    }
 }

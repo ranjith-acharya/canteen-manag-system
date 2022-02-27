@@ -18,4 +18,8 @@ class Canteen extends Model
     public function food(){
         return $this->hasMany('\App\Models\FoodItem', 'canteen_id');
     }
+
+    public function order(){
+        return $this->belongsTo('App\Models\Order', 'canteen_id');
+    }
 }
