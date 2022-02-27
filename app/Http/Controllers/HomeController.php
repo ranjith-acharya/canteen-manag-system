@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Canteen;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $canteens = Canteen::all();
-        return view('home', compact('canteens'));
+        $orders = Order::where('customer_id', Auth::id())->get();
+        return view('home', compact('canteens', 'orders'));
     }
 }
