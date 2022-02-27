@@ -54,6 +54,28 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item nav-link">
+                                <button type="button" class="btn position-relative me-3" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="bi bi-bell"></i>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      99+
+                                    <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </button>
+                                <div class="modal fade" id="notificationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Notifications</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                            ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src="../../img/user/{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="32px" height="32px">&emsp;{{ Auth::user()->name }}
