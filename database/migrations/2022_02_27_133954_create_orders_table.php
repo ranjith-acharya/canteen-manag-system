@@ -21,6 +21,8 @@ class CreateOrdersTable extends Migration
             $table->unsignedDecimal('count');
             $table->unsignedDecimal('total');
             $table->string('reference');
+            $table->enum('customer_status', ['ordered', 'in-progress', 'on-the-way', 'delivered', 'cancelled']);
+            $table->enum('status', ['received', 'in-progress', 'on-the-way', 'delivered', 'cancelled']);
             
             $table->foreignId('customer_id');
             $table->foreign('customer_id')->references('id')->on('users');
