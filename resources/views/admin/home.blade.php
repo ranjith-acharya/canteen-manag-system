@@ -184,7 +184,7 @@ Admin Home
                 <h6 class="card-subtitle">Total Orders</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
-                        <h2 class="card-title text-inherit">0</h2>
+                        <h2 class="card-title text-inherit">0{{ count($orders) }}</h2>
                     </div>
                     <div class="col-4">
                         <h2 class="card-title fs-1 text-center"><i class="bi bi-check2-square"></i></h2>
@@ -199,6 +199,9 @@ Admin Home
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="customer" aria-selected="false">Customer</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="false">Orders</button>
         </li>
     </ul>
     <div class="tab-content">
@@ -248,6 +251,81 @@ Admin Home
                 </table>
             </div>
         </div>
+        <div class="tab-pane" id="order" role="tabpanel" aria-labelledby="order-tab">
+            <h3 class="fs-4 mt-3 mb-3 fw-bold">Order Details</h3>
+            <div class="card card-body table-responsive border-primary">
+                <table id="orderDetails" class="table table-sm table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Reference</th>
+                        <th>Food Name</th>
+                        <th>Order By</th>
+                        {{-- <th>Contact No</th> --}}
+                        <th>Customer Status</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                    <tr>
+                        <td>
+                            {{ Carbon\Carbon::parse($order->created_at)->diffForHumans() }}
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.order.show', $order->id) }}">{{ $order->reference }}</a>
+                        </td>
+                        <td>{{ $order->name }}</td>
+                        <td>
+                            <a href="{{ route('admin.customer.show', $order->user->id) }}">{{ $order->user->name }}
+                        </td>
+                        {{-- <td>
+                            @if($order->user->profile->contact == "")
+                                Profile Not Available
+                            @else
+                                <a href="whatsapp:+91{{$order->user->profile->contact}}">{{ $order->user->profile->contact }}</a>
+                            @endif
+                        </td> --}}
+                        <td>
+                            @if($order->customer_status === 'ordered')
+                                <span class="badge bg-primary text-capitalize">{{ $order->customer_status }}</span>
+                            @endif
+                            @if($order->customer_status === 'in-progress')
+                                <span class="badge bg-info text-capitalize">{{ $order->customer_status }}</span>
+                            @endif
+                            @if($order->customer_status === 'on-the-way')
+                                <span class="badge bg-warning text-capitalize">{{ $order->customer_status }}</span>
+                            @endif
+                            @if($order->customer_status === 'delivered')
+                                <span class="badge bg-success text-capitalize">{{ $order->customer_status }}</span>
+                            @endif
+                            @if($order->customer_status === 'cancelled')
+                                <span class="badge bg-danger text-capitalize">{{ $order->customer_status }}</span>
+                            @endif
+                        </td>
+                        <td>
+                            @if($order->status === 'received')
+                                <span class="badge bg-primary text-capitalize">{{ $order->status }}</span>
+                            @endif
+                            @if($order->status === 'in-progress')
+                                <span class="badge bg-info text-capitalize">{{ $order->status }}</span>
+                            @endif
+                            @if($order->status === 'on-the-way')
+                                <span class="badge bg-warning text-capitalize">{{ $order->status }}</span>
+                            @endif
+                            @if($order->status === 'delivered')
+                                <span class="badge bg-success text-capitalize">{{ $order->status }}</span>
+                            @endif
+                            @if($order->status === 'cancelled')
+                                <span class="badge bg-danger text-capitalize">{{ $order->status }}</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -258,6 +336,7 @@ $(document).ready(function(){
     $('.toast').toast('show');
     $('#customerDetails').DataTable();
     $('#canteenDetails').DataTable();
+    $('#orderDetails').DataTable();
 });
 </script>
 @endsection
