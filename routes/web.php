@@ -26,6 +26,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('profile', ProfileController::class);
 Route::resource('/canteen', App\Http\Controllers\CanteenController::class);
+Route::resource('/order', App\Http\Controllers\OrderController::class);
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::prefix('admin')->group(function () {
