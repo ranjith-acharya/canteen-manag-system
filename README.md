@@ -43,3 +43,11 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 ```bash
 php artisan migrate
 ```
+
+<strong>For Notification</strong><br>
+```bash
+php artisan make:notification
+```
+```bash
+php artisan migrate
+```
