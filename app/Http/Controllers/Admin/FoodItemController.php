@@ -42,8 +42,7 @@ class FoodItemController extends Controller
             'name' => 'required',
             'type' => 'required',
             'image' => 'required',
-            'half_price' => 'required',
-            'full_price' => 'required',
+            'price' => 'required',
         ]);
         $fields = $request->all();
         if($request->hasfile('image')){
