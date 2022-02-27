@@ -55,22 +55,52 @@
                             @endif
                         @else
                             <li class="nav-item nav-link">
-                                <button type="button" class="btn position-relative me-3" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                <button type="button" class="btn position-relative me-1" data-bs-toggle="modal" data-bs-target="#notificationModal">
                                     <i class="bi bi-bell"></i>
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                      99+
-                                    <span class="visually-hidden">unread messages</span>
-                                    </span>
+                                    @if(auth()->user()->unreadnotifications->count())                                    
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{ auth()->user()->unreadnotifications->count() }}
+                                        <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    @endif
                                 </button>
                                 <div class="modal fade" id="notificationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-dialog-scrollable">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="staticBackdropLabel">Notifications</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                            ...
+                                            <div class="modal-body overflow-auto">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link active" id="new-tab" data-bs-toggle="tab" data-bs-target="#new" type="button" role="tab" aria-controls="new" aria-selected="true">New</button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link" id="read-tab" data-bs-toggle="tab" data-bs-target="#read" type="button" role="tab" aria-controls="read" aria-selected="false">Read</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content" id="myTabContent">
+                                                    <div class="tab-pane fade show active" id="new" role="tabpanel" aria-labelledby="new-tab">
+                                                        <div class="mt-2 mb-2">You have {{ auth()->user()->unreadnotifications->count() }} Notifications</div>
+                                                        @foreach(auth()->user()->unReadNotifications as $notification)
+                                                        <div class="mt-2 fs-5 text-primary">
+                                                            <a class="text-decoration-none" href="@if(Auth::user()->role === 'customer') {{ $notification->data['link'] }} @else # @endif">{{ $notification->data['info'] }}</a>
+                                                            <small class="float-end text-muted">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="tab-pane fade" id="read" role="tabpanel" aria-labelledby="read-tab">
+                                                        @foreach(auth()->user()->readNotifications as $notification)
+                                                        <del><div class="mt-2 fs-6 text-muted">
+                                                            <del>{{ $notification->data['info'] }}</del>
+                                                        </div></del>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="link" href="@if(Auth::user()->role ===  'customer') {{ route('markRead') }} @else {{ route('admin.markRead') }} @endif"><button class="btn btn-sm btn-primary link">Mark as Read</button></a>
                                             </div>
                                         </div>
                                     </div>
