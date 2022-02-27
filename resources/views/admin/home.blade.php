@@ -23,7 +23,7 @@ Admin Home
 <div class="container">
     <h1 class="display-6 fs-1 fw-bold mb-2"><span class="d-inline-block me-3">👋</span>Hi, {{Auth::user()->name}}!</h1>
     <div class="row">
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <div class="col-sm-6 col-lg-3 mb-2 mb-lg-2">
             <div class="card-body">
                 <div class="row align-items-center text-center g-2">
                     <div class="col-6">
@@ -153,7 +153,7 @@ Admin Home
             </div>
         </div>
             
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
             <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Customers</h6>
                 <div class="row align-items-center g-2">
@@ -166,7 +166,7 @@ Admin Home
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
             <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Canteen</h6>
                 <div class="row align-items-center g-2">
@@ -179,7 +179,7 @@ Admin Home
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
             <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Orders</h6>
                 <div class="row align-items-center g-2">
@@ -193,32 +193,17 @@ Admin Home
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3 class="fs-4 mb-3 fw-bold">Customer Details</h3>
-            <div class="card card-body table-responsive border-primary">
-                <table id="customerDetails" class="table table-sm table-striped" style="width:100%;">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Signed Up</th>
-                        <th>Customer ID</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($customers as $customer)
-                    <tr>
-                        <td><a class="link" href="{{ route('admin.customer.show', $customer->id) }}">{{ $customer->name }}</a></td>
-                        <td>{{ Carbon\Carbon::parse($customer->created_at)->diffForHumans() }}</td>
-                        <td>{{ $customer->id }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <h3 class="fs-4 mb-3 fw-bold">Canteen Details</h3>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="canteen-tab" data-bs-toggle="tab" data-bs-target="#canteen" type="button" role="tab" aria-controls="canteen" aria-selected="true">Canteen</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="customer" aria-selected="false">Customer</button>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="canteen" role="tabpanel" aria-labelledby="canteen-tab">
+            <h3 class="fs-4 mt-3 mb-3 fw-bold">Canteen Details</h3>
             <div class="card card-body table-responsive border-primary">
                 <table id="canteenDetails" class="table table-sm table-striped" style="width:100%;">
                 <thead>
@@ -234,6 +219,29 @@ Admin Home
                         <td><a class="link" href="{{ route('admin.canteen.show', $canteen->id) }}">{{ $canteen->name }}</a></td>
                         <td>{{ Carbon\Carbon::parse($canteen->created_at)->diffForHumans() }}</td>
                         <td>{{ $canteen->id }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane" id="customer" role="tabpanel" aria-labelledby="customer-tab">
+            <h3 class="fs-4 mt-3 mb-3 fw-bold">Customer Details</h3>
+            <div class="card card-body table-responsive border-primary">
+                <table id="customerDetails" class="table table-sm table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Signed Up</th>
+                        <th>Customer ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($customers as $customer)
+                    <tr>
+                        <td><a class="link" href="{{ route('admin.customer.show', $customer->id) }}">{{ $customer->name }}</a></td>
+                        <td>{{ Carbon\Carbon::parse($customer->created_at)->diffForHumans() }}</td>
+                        <td>{{ $customer->id }}</td>
                     </tr>
                     @endforeach
                 </tbody>
