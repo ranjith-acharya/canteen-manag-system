@@ -17,6 +17,8 @@ class Order extends Model
         'count',
         'total',
         'reference',
+        'status',
+        'customer_status',
         'customer_id',
         'canteen_id',
     ];
@@ -26,7 +28,7 @@ class Order extends Model
     }
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User', 'customer_id');
     }
 
     public function canteen(){

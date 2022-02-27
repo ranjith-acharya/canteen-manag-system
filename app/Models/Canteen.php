@@ -20,6 +20,10 @@ class Canteen extends Model
     }
 
     public function order(){
-        return $this->belongsTo('App\Models\Order', 'canteen_id');
+        return $this->hasMany('App\Models\Order', 'canteen_id');
+    }
+
+    public function profile(){
+        return $this->hasOne('App\Models\Profile', 'customer_id');
     }
 }
