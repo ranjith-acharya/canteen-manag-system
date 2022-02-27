@@ -57,9 +57,10 @@ class CanteenController extends Controller
     public function show($id)
     {
         $canteen = Canteen::findOrFail($id);
-        $foodItems = FoodItem::where('canteen_id', $id)->get();
-        // return $foodItems;
-        return view('admin.canteen', compact('canteen', 'foodItems'));
+        $foodItemsVeg = FoodItem::where('canteen_id', $id)->where('type', 'veg')->get();
+        $foodItemsNonVeg = FoodItem::where('canteen_id', $id)->where('type', 'non-veg')->get();
+        // return $foodItemsNonVeg;
+        return view('admin.canteen', compact('canteen', 'foodItemsVeg', 'foodItemsNonVeg'));
     }
 
     /**
