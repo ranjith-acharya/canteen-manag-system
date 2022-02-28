@@ -2,12 +2,13 @@
 
 <p align="left">
 <a href="https://github.com/ranjith-acharya/canteen-manag-system" target="_blank">
-    <img src="https://img.shields.io/badge/build-Canteen--Manag--System-green?style=for-the-badge" alt="Canteen-Manag-System">
+    <img src="https://img.shields.io/github/languages/count/ranjith-acharya/canteen-manag-system?style=plastic" alt="Language_Count">
 </a>
 <a href="https://github.com/ranjith-acharya" target="_blank">
-    <img src="https://img.shields.io/badge/creator-ranjith--acharya-blue?style=for-the-badge" alt="Creator">
+    <img src="https://img.shields.io/badge/creator-ranjith--acharya-blue?style=plastic" alt="Creator">
 </a>
-<img src="https://img.shields.io/github/last-commit/ranjith-acharya/canteen-manag-system?style=for-the-badge" alt="Last_Commit">
+<img src="https://img.shields.io/github/commit-activity/m/ranjith-acharya/canteen-manag-system?style=plastic" alt="Commit_Activity">
+<img src="https://img.shields.io/github/last-commit/ranjith-acharya/canteen-manag-system?style=plastic" alt="Last_Commit">
 </p>
 
 ## Package used
