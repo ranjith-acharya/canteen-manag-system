@@ -21,41 +21,41 @@ Order Details
 </div>
 @endif
 <div class="container">
-    <h4 class="display-6 fs-1 mb-2">Order Details 🍴</h4>
-    @if(Auth::user()->role === 'customer')
-        @if($order->customer_status === 'ordered')
-            <span class="badge bg-primary text-capitalize">{{ $order->customer_status }}</span>
+    <h4 class="display-6 fs-1 mb-2">Order Details 🍴
+        @if(Auth::user()->role === 'customer')
+            @if($order->customer_status === 'ordered')
+                <span class="badge bg-primary text-capitalize fs-5">{{ $order->customer_status }}</span>
+            @endif
+            @if($order->customer_status === 'in-progress')
+                <span class="badge bg-info text-capitalize fs-5">{{ $order->customer_status }}</span>
+            @endif
+            @if($order->customer_status === 'on-the-way')
+                <span class="badge bg-warning text-capitalize fs-5">{{ $order->customer_status }}</span>
+            @endif
+            @if($order->customer_status === 'delivered')
+                <span class="badge bg-success text-capitalize fs-5">{{ $order->customer_status }}</span>
+            @endif
+            @if($order->customer_status === 'cancelled')
+                <span class="badge bg-danger text-capitalize fs-5">{{ $order->customer_status }}</span>
+            @endif
+        @else
+            @if($order->status === 'received')
+                <span class="badge bg-primary text-capitalize fs-5 mb-2">{{ $order->status }}</span>
+            @endif
+            @if($order->status === 'in-progress')
+                <span class="badge bg-info text-capitalize fs-5 mb-2">{{ $order->status }}</span>
+            @endif
+            @if($order->status === 'on-the-way')
+                <span class="badge bg-warning text-capitalize fs-5 mb-2">{{ $order->status }}</span>
+            @endif
+            @if($order->status === 'delivered')
+                <span class="badge bg-success text-capitalize fs-5 mb-2">{{ $order->status }}</span>
+            @endif
+            @if($order->status === 'cancelled')
+                <span class="badge bg-danger text-capitalize fs-5 mb-2">{{ $order->status }}</span>
+            @endif
         @endif
-        @if($order->customer_status === 'in-progress')
-            <span class="badge bg-info text-capitalize">{{ $order->customer_status }}</span>
-        @endif
-        @if($order->customer_status === 'on-the-way')
-            <span class="badge bg-warning text-capitalize">{{ $order->customer_status }}</span>
-        @endif
-        @if($order->customer_status === 'delivered')
-            <span class="badge bg-success text-capitalize">{{ $order->customer_status }}</span>
-        @endif
-        @if($order->customer_status === 'cancelled')
-            <span class="badge bg-danger text-capitalize">{{ $order->customer_status }}</span>
-        @endif
-    @else
-        @if($order->status === 'received')
-            <span class="badge bg-primary text-capitalize mb-2">{{ $order->status }}</span>
-        @endif
-        @if($order->status === 'in-progress')
-            <span class="badge bg-info text-capitalize mb-2">{{ $order->status }}</span>
-        @endif
-        @if($order->status === 'on-the-way')
-            <span class="badge bg-warning text-capitalize mb-2">{{ $order->status }}</span>
-        @endif
-        @if($order->status === 'delivered')
-            <span class="badge bg-success text-capitalize mb-2">{{ $order->status }}</span>
-        @endif
-        @if($order->status === 'cancelled')
-            <span class="badge bg-danger text-capitalize mb-2">{{ $order->status }}</span>
-        @endif
-    @endif
-
+    </h4>
     @if(Auth::user()->role === 'admin')
     <form method="post" action="{{ route('admin.set.order.status') }}">
     @csrf
@@ -90,8 +90,15 @@ Order Details
     <div class="container col-md-8">
         <div class="card shadow-sm">
             <img src="{{ asset('img/illustrations/wavesOpacity.svg') }}">
+            <div class="mx-auto mb-1">
+                <img src="{{ asset('img/logo.png') }}" width="64px" height="64px" class="img-fluid">
+            </div>
+            <div class="mx-auto mb-2 mt-1 lead"><ins>{{ $order->canteen->name }}&nbsp;Canteen</ins></div>
             <div class="table-responsive col-md-8 container">
-                <p class="text-center mt-1 mb-2"><strong>Order</strong> <ins>{{ $order->reference }}</ins></p>
+                <p class="mt-1 mb-2">
+                    <strong>Order</strong> <ins>{{ $order->reference }}</ins>
+                    <span class="float-end">{{ Carbon\Carbon::parse($order->created_at)->format('d-M-Y') }}</span>
+                </p>
                 <table class="table table-borderless">
                     <thead>
                         <tr>
@@ -105,7 +112,7 @@ Order Details
                             <td>{{ $order->count }} * {{ $order->price }}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td><hr></td>
                             <td><hr></td>
                         </tr>
                         <tr>
