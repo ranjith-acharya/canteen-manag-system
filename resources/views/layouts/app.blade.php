@@ -17,13 +17,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
 </head>
 <style>::-webkit-scrollbar {width: 8px;}::-webkit-scrollbar-thumb {background: #212529;}</style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow">
             <div class="container">
-                <a class="navbar-brand" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">
+                <a class="navbar-brand text-white" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -34,7 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">Home</a>
+                            <a class="nav-link text-white" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">Home</a>
                         </li>
                     </ul>
 
@@ -55,11 +56,11 @@
                             @endif
                         @else
                             <li class="nav-item nav-link">
-                                <button type="button" class="btn position-relative me-1" data-bs-toggle="modal" data-bs-target="#notificationModal">
-                                    <i class="bi bi-bell"></i>
+                                <button type="button" class="btn position-relative me-1 p-0" data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                    <i class="bi bi-bell fs-5 text-white"></i>
                                     @if(auth()->user()->unreadnotifications->count())                                    
-                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                            {{ auth()->user()->unreadnotifications->count() }}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                            <span class=" text-dark">{{ auth()->user()->unreadnotifications->count() }}</span>
                                         <span class="visually-hidden">unread messages</span>
                                         </span>
                                     @endif
@@ -107,8 +108,8 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="../../img/user/{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="32px" height="32px">&emsp;{{ Auth::user()->name }}
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="../../img/user/{{ Auth::user()->avatar }}" class="img-fluid rounded-circle" width="32px" height="32px">&emsp;<span class=" text-white">{{ Auth::user()->name }}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -130,7 +131,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 pb-5">
             @yield('content')
         </main>
     </div>
