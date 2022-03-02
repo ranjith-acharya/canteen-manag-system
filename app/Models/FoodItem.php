@@ -15,6 +15,7 @@ class FoodItem extends Model
         'type',
         'image',
         'price',
+        'description',
         'canteen_id',
     ];
 
