@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -25,6 +26,7 @@ class AdminUser extends Seeder
             'role' => 'admin',
             'card' => Str::random('16'),
             'cardcvv' => Str::random('4'),
+            'email_verified_at' => Carbon::now(),
         ]);
 
         Role::create(['name' => 'admin']);
