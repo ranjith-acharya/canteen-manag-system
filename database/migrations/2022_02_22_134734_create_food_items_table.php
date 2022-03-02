@@ -19,6 +19,7 @@ class CreateFoodItemsTable extends Migration
             $table->enum('type', ['veg', 'non-veg'])->default('veg');
             $table->string('image');
             $table->unsignedFloat('price');
+            $table->string('description')->nullable();
             
             $table->foreignId('canteen_id');
             $table->foreign('canteen_id')->references('id')->on('canteens');
