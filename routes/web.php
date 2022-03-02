@@ -22,13 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('profile', ProfileController::class);
-Route::resource('/canteen', App\Http\Controllers\CanteenController::class);
-Route::resource('/order', OrderController::class);
-Route::get('/markRead', [App\Http\Controllers\Admin\NotificationController::class, 'markRead'])->name('markRead');
+Route::group(['middleware' => 'verified'], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('profile', ProfileController::class);
+    Route::resource('/canteen', App\Http\Controllers\CanteenController::class);
+    Route::resource('/order', OrderController::class);
+    Route::get('/markRead', [App\Http\Controllers\Admin\NotificationController::class, 'markRead'])->name('markRead');
+});
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::prefix('admin')->group(function () {
