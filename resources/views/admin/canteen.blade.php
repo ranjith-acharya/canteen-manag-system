@@ -82,8 +82,8 @@ Canteen Details
                                 <div class="form-floating">
                                     <select class="form-select @error('type') is-invalid @enderror" name="type" id="type">
                                         <option selected disabled>Select Type</option>
-                                        <option value="veg">Veg</option>
-                                        <option value="non-veg">Non Veg</option>
+                                        <option value="veg" selected>Veg</option>
+                                        {{-- <option value="non-veg">Non Veg</option> --}}
                                       </select>
                                       <label for="type" class="text-dark">Select Type</label>
                                     @error('type')
@@ -118,6 +118,14 @@ Canteen Details
                                 </div>
                             </div>
                         </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Description" name="description" id="description" style="height: 100px"></textarea>
+                                    <label for="description">Description</label>
+                                  </div>
+                            </div>
+                        </div>
                         <input type="submit" class="btn btn-success" value="Save">
                     </form>
                 </div>
@@ -128,41 +136,38 @@ Canteen Details
     <div class="row">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="veg-tab" data-bs-toggle="tab" data-bs-target="#veg" type="button" role="tab" aria-controls="veg" aria-selected="true">Veg</button>
+                <button class="nav-link active" id="veg-tab" data-bs-toggle="tab" data-bs-target="#veg" type="button" role="tab" aria-controls="veg" aria-selected="true">Veg Food</button>
             </li>
-            <li class="nav-item" role="presentation">
+            {{-- <li class="nav-item" role="presentation">
                 <button class="nav-link" id="non-veg-tab" data-bs-toggle="tab" data-bs-target="#nonveg" type="button" role="tab" aria-controls="non-veg" aria-selected="false">Non-Veg</button>
-            </li>
+            </li> --}}
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="veg" role="tabpanel" aria-labelledby="veg-tab">
-                <h3 class="fs-4 mt-3 mb-3 fw-bold">Veg Food!</h3>
+                <h3 class="fs-4 mt-3 mb-0 fw-bold">Veg Food!</h3>
                 @if(count($foodItemsVeg) > 0)
                 <div class="row">    
                     @foreach($foodItemsVeg as $veg)
-                    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-                        <div class="card overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-sm-5">
-                                    <img src="../../img/food/{{ $veg->image }}" class="bg-repeat-0 bg-position-center bg-size-cover img-fluid" style="height: 10rem; width:100%;" alt="{{ $veg->name }}">
-                                </div>
-                                {{-- <a href="#" class="col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url(../../img/food/{{ $veg->image }}); min-height: 10rem;"></a> --}}
-                                <div class="col-sm-7">
-                                    <div class="card-body">
-                                        <div class="fs-sm text-muted mb-1">
-                                            @if($veg->type == 'veg')
-                                                <span class="fs-6 text-success"><i class="bi bi-record-circle-fill text-success"></i>&nbsp;Veg</span>
-                                            @else
-                                                <span class="fs-6 text-danger"><i class="bi bi-record-circle-fill text-danger"></i>&nbsp;Non-Veg</span>
-                                            @endif
-                                        </div>
-                                        <h2 class="h4 pb-1 mb-2">
-                                            {{ $veg->name }}<br>
-                                            <span class="fs-6">₹{{ $veg->price }}</span>
-                                        </h2>
-                                    </div>
-                                </div>
+                    <div class="col-12 col-md-6 gy-4">
+                        <div class="py-3 border bg-white">
+                          <div class="row">
+                            <div class="col-3 align-self-center">
+                              <div class="ratio ratio-1x1">
+                                <img class="object-fit-cover" src="../../img/food/{{ $veg->image }}" alt="...">
+                              </div>
                             </div>
+                            <div class="col-7">
+                              <h5 class="mb-2 fs-2">{{ $veg->name }}</h5>
+                              <p class="mb-0 fs-6">
+                                {{ $veg->description }}
+                              </p>
+                            </div>
+                            <div class="col-2">
+                              <div class="fs-4 font-serif text-center text-black">
+                                ₹{{ $veg->price }}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     </div>
                     @endforeach
@@ -175,29 +180,26 @@ Canteen Details
                 <h3 class="fs-4 mt-3 mb-3 fw-bold">NonVeg Food!</h3>
                 @if(count($foodItemsNonVeg) > 0)
                     @foreach($foodItemsNonVeg as $nonveg)
-                    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
-                        <div class="card overflow-hidden">
-                            <div class="row g-0">
-                                <div class="col-sm-5">
-                                    <img src="../../img/food/{{ $nonveg->image }}" class="bg-repeat-0 bg-position-center bg-size-cover img-fluid" style="height: 10rem; width:100%;" alt="{{ $nonveg->name }}">
-                                </div>
-                                {{-- <a href="#" class="col-sm-4 bg-repeat-0 bg-position-center bg-size-cover" style="background-image: url(../../img/food/{{ $nonveg->image }}); min-height: 10rem;"></a> --}}
-                                <div class="col-sm-7">
-                                    <div class="card-body">
-                                        <div class="fs-sm text-muted mb-1">
-                                            @if($nonveg->type == 'veg')
-                                                <span class="fs-6 text-success"><i class="bi bi-record-circle-fill text-success"></i>&nbsp;Veg</span>
-                                            @else
-                                                <span class="fs-6 text-danger"><i class="bi bi-record-circle-fill text-danger"></i>&nbsp;Non-Veg</span>
-                                            @endif
-                                        </div>
-                                        <h2 class="h4 pb-1 mb-2">
-                                            {{ $nonveg->name }}<br>
-                                            <span class="fs-6">₹{{ $nonveg->price }}</span>
-                                        </h2>
-                                    </div>
-                                </div>
+                    <div class="col-12 col-md-6 gy-4">
+                        <div class="py-3 border bg-white">
+                          <div class="row">
+                            <div class="col-3 align-self-center">
+                              <div class="ratio ratio-1x1">
+                                <img class="object-fit-cover" src="../../img/food/{{ $nonveg->image }}" alt="...">
+                              </div>
                             </div>
+                            <div class="col-7">
+                              <h5 class="mb-2">{{ $nonveg->name }}</h5>
+                              <p class="mb-0">
+                                {{ $nonveg->description }}
+                              </p>
+                            </div>
+                            <div class="col-2">
+                              <div class="fs-4 font-serif text-center text-black">
+                                ₹{{ $nonveg->price }}
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     </div>
                     @endforeach
