@@ -195,10 +195,10 @@ Admin Home
     </div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="canteen-tab" data-bs-toggle="tab" data-bs-target="#canteen" type="button" role="tab" aria-controls="canteen" aria-selected="true">Canteen</button>
+            <button class="nav-link active" id="canteen-tab" data-bs-toggle="tab" data-bs-target="#canteen" type="button" role="tab" aria-controls="canteen" aria-selected="true">Canteens</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="customer" aria-selected="false">Customer</button>
+            <button class="nav-link" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab" aria-controls="customer" aria-selected="false">Customers</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="false">Orders</button>
