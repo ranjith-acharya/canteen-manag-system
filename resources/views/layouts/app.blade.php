@@ -37,6 +37,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="@if(Auth::user()->role === 'admin') {{ route('admin.home') }} @else {{ route('home') }} @endif">Home</a>
                         </li>
+                        @if(Auth::user()->role === 'customer')                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('offer.index') }}">Offers</a>
+                        </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
