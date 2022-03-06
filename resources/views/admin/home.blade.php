@@ -26,12 +26,24 @@ Admin Home
         <div class="col-sm-6 col-lg-3 mb-2 mb-lg-2">
             <div class="card-body">
                 <div class="row align-items-center text-center g-2">
-                    <div class="col-6">
+                    <div class="col-8">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-plus"></i>&nbsp;Customer/Canteen/Offer
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addCanteen">Canteen</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addCustomer">Customer</a></li>
+                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addOffer">Make an Offer</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {{-- <div class="col-6">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#addCanteen" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i>&nbsp;Canteen</button>
                     </div>
                     <div class="col-6">
                         <button type="button" data-bs-toggle="modal" data-bs-target="#addCustomer" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i>&nbsp;Customer</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -152,7 +164,79 @@ Admin Home
                 </div>
             </div>
         </div>
-            
+        <div class="modal fade" id="addOffer" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Make an Offer!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{ route('admin.offer.store') }}">
+                        @csrf
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <div class="form-floating">
+                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Offer Name">
+                                        <label for="name" class="text-dark">Offer Name</label>
+                                        @error('name')
+                                        <div class="invalid-feedback mt-2">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <div class="form-floating">
+                                        <input id="percentage" type="number" class="form-control @error('percentage') is-invalid @enderror" name="percentage" value="{{ old('percentage') }}" placeholder="Offer Percentage" min="1">
+                                        <label for="percentage" class="text-dark">Offer Percentage</label>
+                                        @error('percentage')
+                                        <div class="invalid-feedback mt-2">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <div class="form-floating">
+                                        <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" placeholder="Offer Code">
+                                        <label for="code" class="text-dark">Offer Code</label>
+                                        @error('code')
+                                        <div class="invalid-feedback mt-2">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Description" name="description" id="description" style="height: 100px"></textarea>
+                                    <label for="description">Description</label>
+                                    @error('description')
+                                    <div class="invalid-feedback mt-2">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success" value="Save">
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
             <div class="card card-body shadow-sm border-primary">
                 <h6 class="card-subtitle">Total Customers</h6>
@@ -202,6 +286,9 @@ Admin Home
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="order-tab" data-bs-toggle="tab" data-bs-target="#order" type="button" role="tab" aria-controls="order" aria-selected="false">Orders</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="offer-tab" data-bs-toggle="tab" data-bs-target="#offer" type="button" role="tab" aria-controls="offer" aria-selected="false">Offers</button>
         </li>
     </ul>
     <div class="tab-content">
@@ -326,6 +413,31 @@ Admin Home
                 </table>
             </div>
         </div>
+        <div class="tab-pane" id="offer" role="tabpanel" aria-labelledby="offer-tab">
+            <h3 class="fs-4 mt-3 mb-3 fw-bold">Offer Details</h3>
+            <div class="card card-body table-responsive border-primary">
+                <table id="offerDetails" class="table table-sm table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Offer Percentage</th>
+                        <th>Code</th>
+                        <th>Created at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($offers as $offer)
+                    <tr>
+                        <td>{{ $offer->name }}</td>
+                        <td>{{ $offer->percentage }}&nbsp;%</td>
+                        <td><h4 class="h4 badge bg-primary">{{ $offer->code }}</h4></td>
+                        <td>{{ Carbon\Carbon::parse($offer->created_at)->diffForHumans() }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
@@ -337,6 +449,7 @@ $(document).ready(function(){
     $('#customerDetails').DataTable();
     $('#canteenDetails').DataTable();
     $('#orderDetails').DataTable();
+    $('#offerDetails').DataTable();
 });
 </script>
 @endsection
