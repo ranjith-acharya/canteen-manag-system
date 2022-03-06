@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Canteen;
+use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class HomeController extends Controller
         $customers = User::where('role', 'customer')->get();
         $canteens = Canteen::all();
         $orders = Order::all();
-        return view('admin.home', compact('customers', 'canteens', 'orders'));
+        $offers = Offer::all();
+        return view('admin.home', compact('customers', 'canteens', 'orders', 'offers'));
     }
 }
