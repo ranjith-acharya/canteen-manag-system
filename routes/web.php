@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CanteenController;
 use App\Http\Controllers\Admin\FoodItemController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,7 @@ Route::group(['middleware' => 'verified'], function(){
     Route::resource('profile', ProfileController::class);
     Route::resource('/canteen', App\Http\Controllers\CanteenController::class);
     Route::resource('/order', OrderController::class);
+    Route::resource('/offer', OfferController::class);
     Route::get('/markRead', [App\Http\Controllers\Admin\NotificationController::class, 'markRead'])->name('markRead');
 });
 
@@ -48,6 +50,8 @@ Route::group(['middleware' => ['role:admin']], function () {
             Route::post('/customer/store', [\App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer.store');
 
             Route::get('/markRead', [App\Http\Controllers\Admin\NotificationController::class, 'markRead'])->name('markRead');
+
+            Route::resource('/offer', OfferController::class);
         });
     });
 });
