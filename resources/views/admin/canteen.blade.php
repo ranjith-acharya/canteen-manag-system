@@ -123,7 +123,7 @@ Canteen Details
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Description" name="description" id="description" style="height: 100px"></textarea>
                                     <label for="description">Description</label>
-                                  </div>
+                                </div>
                             </div>
                         </div>
                         <input type="submit" class="btn btn-success" value="Save">
