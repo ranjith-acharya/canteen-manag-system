@@ -22,7 +22,7 @@ Home
 @endif
 <div class="container">
     <h1 class="display-6 fs-1 fw-bold mb-3"><span class="d-inline-block me-3">👋</span>Hi, {{Auth::user()->name}}!</h1>
-    <hr><div class="row">
+    <hr><div class="row mb-4">
         <h3 class="fs-4 mb-3 fw-bold">Choose Canteen</h3>
         @if(count($canteens) > 0)
             @foreach($canteens as $canteen)
