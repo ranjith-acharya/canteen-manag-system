@@ -5,21 +5,6 @@
 @endsection
 
 @section('content')
-@if(session('status'))
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div class="toast" role="status" aria-live="polite" data-bs-autohide="true" data-bs-animation="true" data-bs-delay="10000">
-        <div class="toast-header">
-            <img src="{{ asset('img/logo.ico') }}" class="rounded img-fluid me-2" alt="logo" height="30" width="30">
-            <strong class="me-auto">Cafeteria</strong>
-            <small>{{ date('s') }}&nbsp;secs ago</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-success">
-            <i class="bi bi-check2-circle text-success"></i>&nbsp;&nbsp;{{ session('status') }}
-        </div>
-    </div>
-</div>
-@endif
 <div class="container">
     <h4 class="display-6 mt-2">Profile <i class="bi bi-sliders2"></i></h4>
     <div class="card card-body mt-4">
@@ -73,7 +58,7 @@
                         <a href="https://www.instagram.com/{{ $user->profile->instagram }}" target="_blank"><i class="bi bi-instagram lead" style="color:#E4405F;"></i></a>&nbsp;
                         <a href="https://www.linkedin.com/in/{{ $user->profile->linkedin }}" target="_blank"><i class="bi bi-linkedin lead" style="color:#0A66C2;"></i></a>&nbsp;
                         <a href="whatsapp:+91{{ $user->profile->contact }}" target="_blank"><i class="bi bi-whatsapp lead" style="color:#25D366;"></i></a>
-                    <br><br><button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateProfile">Update</button>
+                    <br><br><button type="button" class="btn btn-sm btn-primary btn-hover-rise btn-hover-scale" data-bs-toggle="modal" data-bs-target="#updateProfile">Update</button>
                     <div class="modal fade" id="updateProfile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog col-md-12">
                           <div class="modal-content">
