@@ -5,31 +5,16 @@ Admin Home
 @endsection
 
 @section('content')
-@if(session('status'))
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div class="toast" role="status" aria-live="polite" data-bs-autohide="true" data-bs-animation="true" data-bs-delay="10000">
-        <div class="toast-header">
-            <img src="{{ asset('img/logo.ico') }}" class="rounded img-fluid me-2" alt="logo" height="30" width="30">
-            <strong class="me-auto">Cafeteria</strong>
-            <small>{{ date('s') }}&nbsp;secs ago</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-success">
-            <i class="bi bi-check2-circle text-success"></i>&nbsp;&nbsp;{{ session('status') }}
-        </div>
-    </div>
-</div>
-@endif
 <div class="container">
     <h1 class="display-6 fs-1 fw-bold mb-2"><span class="d-inline-block me-3">👋</span>Hi, {{Auth::user()->name}}!</h1>
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-sm-6 col-lg-3 mb-2 mb-lg-2">
             <div class="card-body">
                 <div class="row align-items-center text-center g-2">
                     <div class="col-8">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-plus"></i>&nbsp;Customer/Canteen/Offer
+                                <i class="bi bi-plus"></i>&nbsp;Options
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addCanteen">Canteen</a></li>
@@ -238,27 +223,27 @@ Admin Home
         </div>
 
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
-            <div class="card card-body shadow-sm border-primary">
-                <h6 class="card-subtitle">Total Customers</h6>
+            <div class="card card-body bg-success text-white shadow-sm border-primary">
+                <h6 class="card-subtitle text-white">Total Customers</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
-                        <h2 class="card-title text-inherit">0{{ count($customers) }}</h2>
+                        <h2 class="card-title text-white">0{{ count($customers) }}</h2>
                     </div>
                     <div class="col-4">
-                        <h2 class="card-title fs-1 text-center"><i class="bi bi-people"></i></h2>
+                        <h2 class="card-title fs-1 text-center"><i class="bi bi-people fs-1 text-white"></i></h2>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
-            <div class="card card-body shadow-sm border-primary">
-                <h6 class="card-subtitle">Total Canteen</h6>
+            <div class="card card-body bg-primary shadow-sm border-primary">
+                <h6 class="card-subtitle text-white">Total Canteen</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
-                        <h2 class="card-title text-inherit">0{{ count($canteens) }}</h2>
+                        <h2 class="card-title text-white">0{{ count($canteens) }}</h2>
                     </div>
                     <div class="col-4">
-                        <h2 class="card-title fs-1 text-center"><i class="bi bi-building"></i></h2>
+                        <h2 class="card-title fs-1 text-center"><i class="bi bi-building fs-1 text-white"></i></h2>
                     </div>
                 </div>
             </div>
@@ -268,10 +253,10 @@ Admin Home
                 <h6 class="card-subtitle">Total Orders</h6>
                 <div class="row align-items-center g-2">
                     <div class="col-8">
-                        <h2 class="card-title text-inherit">0{{ count($orders) }}</h2>
+                        <h2 class="card-title">0{{ count($orders) }}</h2>
                     </div>
                     <div class="col-4">
-                        <h2 class="card-title fs-1 text-center"><i class="bi bi-check2-square"></i></h2>
+                        <h2 class="card-title fs-1 text-center"><i class="bi bi-check2-square fs-1"></i></h2>
                     </div>
                 </div>
             </div>
