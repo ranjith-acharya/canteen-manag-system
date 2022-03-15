@@ -5,21 +5,6 @@ Home
 @endsection
 
 @section('content')
-@if(session('status'))
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div class="toast" role="status" aria-live="polite" data-bs-autohide="true" data-bs-animation="true" data-bs-delay="10000">
-        <div class="toast-header">
-            <img src="{{ asset('img/logo.ico') }}" class="rounded img-fluid me-2" alt="logo" height="30" width="30">
-            <strong class="me-auto">Cafeteria</strong>
-            <small>{{ date('s') }}&nbsp;secs ago</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body text-success">
-            <i class="bi bi-check2-circle text-success"></i>&nbsp;&nbsp;{{ session('status') }}
-        </div>
-    </div>
-</div>
-@endif
 <div class="container">
     <h1 class="display-6 fs-1 fw-bold mb-3"><span class="d-inline-block me-3">👋</span>Hi, {{Auth::user()->name}}!</h1>
     <hr><div class="row mb-4">
@@ -27,24 +12,29 @@ Home
         @if(count($canteens) > 0)
             @foreach($canteens as $canteen)
             <div class="col-sm-6 col-lg-3 mb-3 mb-lg-3">
-                <div class="card card-body shadow-sm border-primary">
+                <div class="card card-body bg-primary shadow-sm border-primary p-5">
+                    <a href="@if($canteen->status == 'active') {{ route('canteen.show', $canteen->id) }} @else {{ route('home') }} @endif">
                     <div class="row align-items-center g-2">
                         <div class="col-10">
-                            <h4 class="h4 fs-5">{{ $canteen->name }}</h4>
+                            <h4 class="h4 fs-5 text-white">{{ $canteen->name }}</h4>
                             @if($canteen->status == 'active')
-                                <span class="badge bg-info fs-6">Open</span>
+                                <span class="badge bg-info fs-6 text-white">Open</span>
                             @else
-                                <span class="badge bg-danger fs-6">Closed</span>
+                                <span class="badge bg-danger fs-6 text-white">Closed</span>
                             @endif
                         </div>
                         <div class="col-1">
                             <h2 class="fs-1 text-center">
-                                <a href="@if($canteen->status == 'active') {{ route('canteen.show', $canteen->id) }} @else {{ route('home') }} @endif">
-                                    <button class="btn btn-sm rounded-circle btn-primary"><i class="bi bi-arrow-right"></i></button>
-                                </a>
+                                
+                                    <span class="svg-icon svg-icon-white svg-icon-2hx"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="black"/>
+                                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="black"/>
+                                    </svg></span>
+                                
                             </h2>
                         </div>
                     </div>
+                    </a>
                 </div>
             </div>
             @endforeach
@@ -67,9 +57,10 @@ Home
                             @foreach($orders as $order)
                             <div class="col-12 col-md-4">
                                 <div class="border bg-white">
+                                    <a href="{{ route('order.show', $order->id) }}">
                                     <div class="row p-3">
                                         <div class="col-7">
-                                            <a href="{{ route('order.show', $order->id) }}"><h5 class="mb-2 fs-3">{{ $order->name }}</h5></a>
+                                            <h5 class="mb-2 fs-3">{{ $order->name }}</h5>
                                             <h5 class="mb-2 fs-6">{{ $order->canteen->name }}&nbsp;Canteen</h5>
                                             <p class="mb-0">
                                                 @if($order->customer_status === 'ordered')
@@ -98,6 +89,7 @@ Home
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             @endforeach
@@ -121,9 +113,10 @@ Home
                             @foreach($orderAll as $orders)
                             <div class="col-12 col-md-4">
                                 <div class="border bg-white">
+                                    <a href="{{ route('order.show', $orders->id) }}">
                                     <div class="row p-3">
                                         <div class="col-7">
-                                            <a href="{{ route('order.show', $orders->id) }}"><h5 class="mb-2 fs-3">{{ $orders->name }}</h5></a>
+                                            <h5 class="mb-2 fs-3">{{ $orders->name }}</h5>
                                             <h5 class="mb-2 fs-6">{{ $orders->canteen->name }}&nbsp;Canteen</h5>
                                             <p class="mb-0">
                                                 @if($orders->customer_status === 'ordered')
@@ -152,6 +145,7 @@ Home
                                             </div>
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>
                             @endforeach
