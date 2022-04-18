@@ -113,6 +113,21 @@ Canteen Details
                                                                         @enderror
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="form-floating">
+                                                                        <select class="form-select" name="offer" id="offer">
+                                                                            <option selected disabled>Offers</option>
+                                                                            @if(count($offers) == 0)
+                                                                                <option value="">No Code Available</option>
+                                                                            @else
+                                                                                @foreach($offers as $offer)
+                                                                                    <option value="{{ $offer->percentage }}">{{ $offer->code }}</option>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </select>
+                                                                        <label for="offer" class="text-dark">Offers (optional)</label>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <input type="submit" class="btn btn-success" value="Save">
                                                         </form>
