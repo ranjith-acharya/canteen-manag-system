@@ -17,6 +17,7 @@ class Order extends Model
         'count',
         'total',
         'reference',
+        'offer',
         'status',
         'customer_status',
         'customer_id',
