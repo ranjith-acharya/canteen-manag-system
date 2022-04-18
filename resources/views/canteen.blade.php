@@ -141,7 +141,7 @@ Canteen Details
                     <h1 class="h4"><span class="badge bg-info">Currently Food not added!</span></h1>
                 @endif
             </div>
-            <div class="tab-pane" id="nonveg" role="tabpanel" aria-labelledby="non-veg-tab">
+            {{-- <div class="tab-pane" id="nonveg" role="tabpanel" aria-labelledby="non-veg-tab">
                 <h3 class="fs-4 mt-3 mb-3 fw-bold">NonVeg Food!</h3>
                 @if(count($foodItemsNonVeg) > 0)
                     @foreach($foodItemsNonVeg as $nonveg)
@@ -242,7 +242,7 @@ Canteen Details
                 @else
                     <h1 class="h4"><span class="badge bg-info">Currently Food not added!</span></h1>
                 @endif
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
