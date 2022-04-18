@@ -85,7 +85,7 @@ Home
                                         </div>
                                         <div class="col-5">
                                             <div class="fs-4 text-black float-end">
-                                            ₹{{ $order->price }}
+                                            {{-- ₹{{ $order->price }} --}}
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@ Home
                                         </div>
                                         <div class="col-5">
                                             <div class="fs-4 text-black float-end">
-                                            ₹{{ $orders->price }}
+                                            {{-- ₹{{ $orders->price }} --}}
                                             </div>
                                         </div>
                                     </div>
