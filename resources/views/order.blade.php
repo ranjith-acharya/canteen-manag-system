@@ -96,13 +96,18 @@ Order Details
                             <td>{{ $order->name }}</td>
                             <td>{{ $order->count }} * {{ $order->price }}</td>
                         </tr>
+                        @if( $order->offer > 0 )
+                        <tr>
+                            <td>{{ $order->offer }}% Off</td>
+                        </tr>
+                        @endif
                         <tr>
                             <td><hr></td>
                             <td><hr></td>
                         </tr>
                         <tr>
                             <td class="fw-bold">Total</td>
-                            <td>{{ $order->total }}/-</td>
+                            <td id="afterOffer">{{ $order->total }}/-</td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,5 +126,11 @@ Order Details
 $(document).ready(function(){
     $('.toast').toast('show');
 });
+@if( $order->offer > 0 )
+    var offerAmount = 100 - parseFloat("{{ $order->offer }}");
+    var afterOff = (offerAmount * parseInt("{{ $order->total }}") / 100);
+    // alert(afterOff);
+    document.getElementById("afterOffer").innerHTML = afterOff+".00/-";
+@endif
 </script>
 @endsection
