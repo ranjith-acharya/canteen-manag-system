@@ -49,6 +49,11 @@ class OrderController extends Controller
         $fields['customer_id'] = Auth::id();
         $fields['reference'] = Str::random('20');
         $fields['total'] = $request->count * $request->price;
+        if($request->offer == ""){
+            $fields['offer'] = "0";
+        }else{
+            $fields['offer'] = $request->offer;
+        }
         $fields['customer_status'] = 'ordered';
         $fields['status']= 'received';
 
